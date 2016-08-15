@@ -28,6 +28,7 @@ $ git clone [git-repo-url] folder-name
 $ cd folder-name
 ```
 Edit the config files
+
 Performe the first google api call from console and move the gmail_php.json and the client_secret.json to the config file if is necessary
 ```sh
 $ php bin/console ProcessEmail
