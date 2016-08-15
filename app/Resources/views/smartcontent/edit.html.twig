@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('//cdn.tinymce.com/4/tinymce.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <h1>SmartContent edit</h1>
+
+    <div class="panel panel-default panel-register text-left">
+		<div class="panel-body">
+		{{ form_start(form, {'attr': {'class': 'form-smartcontent'}}) }}
+			{{ form_widget(form) }}
+			<div class="text-right btns">
+		    	<input id="cancelBtn" class="btn btn-danger" type="button" value="{{ 'form.cancel'|trans({}, 'AppBundle') }}" />
+		        <input class="btn btn-success" id="submit" type="submit" value="{{ 'form.submit'|trans({}, 'AppBundle') }}" />
+	    	</div>
+    	{{ form_end(form) }}
+	   </div>
+   </div>
+
+	<script>
+		$(document).ready(function() {
+			tinymce.init({ selector: '#smart_content_content', height : "280"});
+			$('#cancelBtn').bind('click', function() {
+				window.location.href = '{{ path('smartcontent_index', { 'googleAlertId': smartContent.googleAlertId }) }}';
+			});
+		});
+	</script>
+
+{% endblock %}
+

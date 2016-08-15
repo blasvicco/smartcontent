@@ -1,0 +1,6 @@
+# Global strings
+layout:
+    profile: 'Profile'
+    
+form:
+    cancel: 'Cancel'

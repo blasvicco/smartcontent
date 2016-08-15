@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/AppBundle/css/smartcontent.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    <h1>SmartContent list</h1>
+    <div class="panel panel-default panel-register text-left">
+    	<div class="panel-body">
+			{{ form_start(form, {'attr': {'id': 'smart_content_filter', 'class': 'form-smartcontentfilter'}}) }}
+				{{ form_widget(form) }}
+    		{{ form_end(form) }}
+    	</div>
+    	<div class="panel-body">
+    		<form class="form-smartcontentmassive">
+	    		<div class="form-group">
+	    			<label class="control-label" for="smart_content_massive_action">{{ 'smartcontent.massiveAction'|trans({}, 'AppBundle') }}</label>
+	    			<div class="dropdown dropdown-inline">
+		    			<button class="btn btn-default dropdown-toggle" type="button" id="smart_content_massive_action_" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span>{{ 'smartcontent.delete'|trans({}, 'AppBundle') }}</span>&nbsp;<span class="caret"></span>
+						</button>
+						<input type="hidden" id="smart_content_massive_action" value="delete">
+						<ul class="dropdown-menu" id="smart_content_massive_action__">
+							<li onclick="massiveActionSelect(this);" data-val="delete" data-text="{{ 'smartcontent.delete'|trans({}, 'AppBundle') }}">
+								<a href="#">{{ 'smartcontent.delete'|trans({}, 'AppBundle') }}</a>
+							</li>
+						</ul>
+	    			</div>
+	    			<button class="btn-default btn" id="smart_content_massive_action_execute">{{ 'smartcontent.execute'|trans({}, 'AppBundle') }}</button>
+	    		</div>
+    		</form>
+    	</div>
+		<div class="panel-body">
+		    <div class="tableList">
+			    <table class="table">
+			        <thead>
+			            <tr>
+			                <th>Id</th>
+			                <th>Date</th>
+			                <th>URL</th>
+			                <th>Content</th>
+			                <th>Status</th>
+			                <th>
+			                	<span>Actions</span>
+			                </th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        {% for smartContent in smartContents %}
+			            <tr>
+			            	<td><a href="{{ path('smartcontent_edit', { 'id': smartContent.id }) }}">{{ smartContent.id }}</a></td>
+			                <td>{{ smartContent.created|date("m-d-Y") }}</td>
+			                <td>{{ smartContent.url|slice(0, 30) ~ '...' }}</td>
+			                <td>{{ smartContent.content|slice(0, 30) ~ '...' }}</td>
+			                <td>{{ smartContent.status }}</td>
+			                <td>
+			                    <ul class="action">
+			                    	<li>
+			                            <a href="{{ path('smartcontent_edit', { 'id': smartContent.id }) }}"><span class="glyphicon glyphicon-pencil edit"></span></a>
+			                        </li>
+			                        <li>
+			                            <a href="{{ path('smartcontent_delete', { 'id': smartContent.id }) }}"><span class="glyphicon glyphicon-remove delete"></span></a>
+			                        </li>
+			                    </ul>
+			                </td>
+			            </tr>
+			        {% endfor %}
+			        </tbody>
+			    </table>
+    		</div>
+    		{{ paginator|raw }}
+    	</div>
+    </div>
+    
+    <script>
+    	massiveActionSelect = function(option) {
+			var val = $(option).attr('data-val');
+			var valText = $(option).attr('data-text');
+			$('#smart_content_massive_action_').html('<span>'+valText + '</span>&nbsp;<span class="caret"></span>');
+			$('#smart_content_massive_action').val(val);
+		}
+		
+		$(document).ready(function() {
+			$('button[name="smart_content_filter[smartcontent.clear]"]').bind('click', function() {
+				$('#smart_content_filter_dateFrom').val('');
+				$('#smart_content_filter_dateTo').val('');
+				$('#status').val('');
+				$('#smart_content_filter').submit();
+			});
+			
+			$('#smart_content_massive_action_execute').bind('click', function() {
+				if (confirm("{{ 'smartcontent.areYouSureMassiveAction'|trans({}, 'AppBundle') }}")) {
+				  $.ajax({
+				    type: "POST",
+				    url: '{{ path('smartcontent_massive_action') }}',
+				    data: {
+					    'action': $('#smart_content_massive_action').val(),
+					    'googleAlertId': '{{ googleAlertId }}',
+					    'jsonFilter': '{{ jsonFilter | raw }}'
+					},
+				    dataType: 'JSON',
+				    success: function(response) {
+					    if (response.msg) alert(response.msg);
+					    if (response.callback) eval(response.callback);
+					}
+				  });
+				}
+			});
+		});
+	</script>
+{% endblock %}

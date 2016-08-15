@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/AppBundle/css/googlealert.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    <h1>GoogleAlert list</h1>
+    <div class="panel panel-default panel-register text-left">
+		<div class="panel-body">
+		    <div class="tableList">
+			    <table class="table">
+			        <thead>
+			            <tr>
+			                <th>Id</th>
+			                <th>Keyword</th>
+			                <th>Often</th>
+			                <th>Lang</th>
+			                <th>Country</th>
+			                <th>
+			                	<span>Actions</span>
+			                	<a href="{{ path('googlealert_new') }}">
+			                		<span class="glyphicon glyphicon-plus plus-right"></span>
+			                	</a>
+			                </th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        {% for googleAlert in googleAlerts %}
+			            <tr>
+			            	<td><a href="{{ path('smartcontent_index', { 'googleAlertId': googleAlert.googleAlertId }) }}">{{ googleAlert.id }}</a></td>
+			                <td>{{ googleAlert.keyword }}</td>
+			                <td>{{ googleAlert.often }}</td>
+			                <td>{{ googleAlert.lang }}</td>
+			                <td>{{ googleAlert.country }}</td>
+			                <td>
+			                    <ul class="action">
+			                        <li>
+			                            <a href="{{ path('smartcontent_index', { 'googleAlertId': googleAlert.googleAlertId }) }}"><span class="glyphicon glyphicon-list"></span></a>
+			                        </li>
+			                        <li>
+			                            <a href="{{ path('googlealert_delete', { 'id': googleAlert.id }) }}"><span class="glyphicon glyphicon-remove delete"></span></a>
+			                        </li>
+			                    </ul>
+			                </td>
+			            </tr>
+			        {% endfor %}
+			        </tbody>
+			    </table>
+    		</div>
+    		{{ paginator|raw }}
+    	</div>
+    </div>
+{% endblock %}

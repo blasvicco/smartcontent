@@ -1,0 +1,41 @@
+.FOSUserBundle .panel {
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.FOSUserBundle .panel-title {
+	display: inline;
+}
+
+.FOSUserBundle .panel-heading-btn {
+	float: right;
+}
+
+.form-profile {
+	max-width: 600px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-profile label {
+	float: left;
+    width: 30%;
+    text-align: right;
+    margin-right: 1%;
+    margin-top: 1%;
+}
+
+.form-profile .form-group {
+	height: 35px;
+}
+
+.form-profile .form-group a {
+	float: right;
+    margin-right: 10%;
+}
+
+.form-profile .form-control {
+	width: 60%;
+	float: left;
+}

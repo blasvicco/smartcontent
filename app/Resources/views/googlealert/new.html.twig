@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/AppBundle/css/googlealert.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    <h1>GoogleAlert creation</h1>
+    <div class="panel panel-default panel-register text-left">
+		<div class="panel-body">
+		    {{ form_start(form, {'attr': {'class': 'form-googlealert'}}) }}
+				{{ form_widget(form) }}
+		        <div class="text-right btns">
+			    	<input id="cancelBtn" class="btn btn-danger" type="button" value="{{ 'form.cancel'|trans({}, 'AppBundle') }}" />
+			        <input class="btn btn-success" id="submit" type="submit" value="{{ 'form.submit'|trans({}, 'AppBundle') }}" />
+		    	</div>
+		    {{ form_end(form) }}
+	   </div>
+   </div>
+   
+	<script>
+		$(document).ready(function() {
+			$('#cancelBtn').bind('click', function() {
+				window.location.href = '{{ path('googlealert_index') }}';
+			});
+		});
+	</script>
+
+{% endblock %}

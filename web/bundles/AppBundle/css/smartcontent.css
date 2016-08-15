@@ -1,0 +1,152 @@
+.tableList {
+	width: 80%;
+	margin: auto;
+}
+
+.paginator {
+	width: 80%;
+	margin: auto;
+    text-align: center;
+}
+
+.form-smartcontent {
+	max-width: 600px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-smartcontent .form-smartcontent-heading {
+	margin-bottom: 10px;
+}
+
+.form-smartcontent .form-group {
+	text-align: right;
+}
+
+.form-smartcontent .form-control {
+	display: inline;
+	height : auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+	width: 60%;
+	margin-right: 10%;
+	height: auto;
+}
+
+.form-smartcontent .form-control:focus {
+	z-index: 2;
+}
+
+.form-smartcontent label {
+	display: inline;
+	font-weight: normal;
+	width: 28%;
+	margin-right: 2%;
+}
+
+.form-smartcontent .btns {
+	margin-top: 40px;
+}
+
+.form-smartcontentfilter {
+	padding: 5px;
+    margin: 0px auto;
+    width: 80%;
+}
+
+.form-smartcontentfilter .form-group {
+	display: inline;
+	margin-right: 2%;
+}
+
+.form-smartcontentfilter .form-control {
+	display: inline;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    width: 15%;
+    margin-left: 1%;
+    height: auto;
+}
+
+.form-smartcontentfilter .dropdown-inline {
+    display: inline;
+    height: auto;
+    box-sizing: border-box;
+    font-size: 18px;
+    width: 15%;
+    margin-right: 10%;
+    height: auto;
+    text-align: left;
+}
+
+.form-smartcontentmassive {
+	padding: 5px;
+    margin: 0px auto;
+    width: 80%;
+}
+
+.form-smartcontentmassive .form-group {
+	display: inline;
+	margin-right: 2%;
+}
+
+.form-smartcontentmassive .form-control {
+	display: inline;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    width: 15%;
+    margin-left: 1%;
+    height: auto;
+}
+
+.form-smartcontentmassive .dropdown-inline {
+    display: inline;
+    height: auto;
+    box-sizing: border-box;
+    font-size: 18px;
+    width: 15%;
+    height: auto;
+    text-align: left;
+}
+
+.form-smartcontentfilter .help-block {
+	display: none;
+}
+
+.plus-right {
+	float: right;
+}
+
+.action {
+	list-style-type: none;
+	display: inline;
+}
+
+.action li {
+	float: left;
+	margin-left: 9px;
+}
+
+.delete {
+	color: #BB0000;
+}
+
+.dropdown-inline {
+	display: inline-block;
+    height: auto;
+    box-sizing: border-box;
+    font-size: 16px;
+    width: 60%;
+    margin-right: 10%;
+    height: auto;
+    text-align: left;
+}

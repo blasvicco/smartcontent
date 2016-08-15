@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/AppBundle/css/default.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+	<div id="container">
+		<div id="noWelcome">
+			<h1 class="restricted error red"><span>{{ 'msg.restricted'|trans({}, 'AppBundle') }}</span></h1>
+		</div>
+	</div>
+{% endblock %}
+

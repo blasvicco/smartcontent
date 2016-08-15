@@ -1,0 +1,59 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/AppBundle/css/login.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div>
+	{% if error %}
+	    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+		<h3>{{ 'layout.login'|trans }}</h3>
+	    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	    <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
+	    <input class="form-control" placeholder="{{ 'security.login.username'|trans }}" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+	    <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
+	    <input class="form-control" placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
+		<div class="form-group">
+		    <input class="my-checkbox" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+		    <label class="my-checkbox-label"for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+		    | <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+		</div>
+		<div class="text-right">
+			<input id="cancelBtn" class="btn btn-danger" type="button" value="{{ 'form.cancel'|trans({}, 'FOSUserBundle') }}" />
+	    	<input class="btn btn-success submit" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+	    </div>
+	</form>
+</div>
+
+<script>
+	var getUrlParameter = function getUrlParameter(sParam) {
+	  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+	      sURLVariables = sPageURL.split('&'),
+	      sParameterName,
+	      i;
+	
+	  for (i = 0; i < sURLVariables.length; i++) {
+	      sParameterName = sURLVariables[i].split('=');
+	
+	      if (sParameterName[0] === sParam) {
+	          return sParameterName[1] === undefined ? true : sParameterName[1];
+	      }
+	  }
+	};
+	
+	$(document).ready(function() {
+		$('#cancelBtn').bind('click', function() {
+			window.location.href = '{{ path('homepage') }}';
+		});
+
+		$('#username').val(getUrlParameter('username') ? getUrlParameter('username') : '');
+		$('#password').val(getUrlParameter('password') ? getUrlParameter('password') : '');
+	});
+</script>
+{% endblock fos_user_content %}

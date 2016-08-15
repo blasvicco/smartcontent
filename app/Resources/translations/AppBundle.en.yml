@@ -1,0 +1,46 @@
+# Global strings
+msg:
+  welcome: 'Welcome to'
+  hello: 'Hello dude, you were looking for the best and now the best is just front of you. Check this amazing tool to generate content automatically and post it anywhere!!!'
+  remember: 'Remember that if you do not have an account you can try the app with the test user:'
+  newAlert: 'Go a head and create a new google alert: '
+  checkAlert: 'Or just check your alerts and its contents: '
+  start: 'Please, go ahead and start to use the app creating a Google Alert'
+  click_here: 'Click Here'
+  restricted: 'What are you trying to do dude???!!!'
+
+googlealert:
+  myGoogleAlerts: 'My Google Alerts'
+  asItHappens: 'As it happens'
+  onceADay: 'Once a day'
+  onceAWeek: 'Once a week'
+  any: 'Any'
+  english: 'English'
+  spanish: 'Spanish'
+
+smartcontent:
+  parsed: 'parsed'
+  queued: 'queued'
+  discarded: 'discarded'
+  error: 'error'
+  any: 'Any status'
+  clear: 'Clear'
+  search: 'Search'
+  dateFrom: 'Date from'
+  dateTo: 'Date to'
+  status: 'Status'
+  massiveAction: 'Massive actions'
+  delete: 'Delete'
+  execute: 'Run'
+  areYouSureMassiveAction: 'Remember: The massive action will apply to the current filtered list.\nAre you sure you want to run this massive action?'
+  massiveDeleteOk: 'The massive delete action was performed successfuly.'
+  massiveDeleteFail: 'We cant not performe the massive delete action.'
+
+form:
+  cancel: 'Cancel'
+  submit: 'Submit'
+  
+Keyword: 'Keyword'
+Often: 'Often'
+Lang: 'Lang'
+Country: 'Country'

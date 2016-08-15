@@ -1,0 +1,44 @@
+.form-signin {
+	max-width: 600px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading {
+	margin-bottom: 10px;
+}
+
+.form-signin .form-group {
+    text-align: left;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-signin .form-control {
+	display: inline;
+	height : auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+	width: 60%;
+	margin: 15px;
+	height: auto;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin label {
+	display: inline;
+	font-weight: normal;
+	width: 28%;
+	margin-right: 2%;
+}
+
+.form-signin .btns {
+	margin-top: 40px;
+}

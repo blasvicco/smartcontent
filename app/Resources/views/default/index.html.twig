@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div id="container">
+		<div id="welcome">
+			<h1><span>{{ 'msg.welcome'|trans({}, 'AppBundle') }} SmartContent</span></h1>
+			<div>
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}
+				<p>{{ 'msg.hello'|trans({}, 'AppBundle') }}</p>
+				<p>{{ 'msg.remember'|trans({}, 'AppBundle') }}</p>
+				<p><b>User:</b> test<br /><b>Pass:</b> asdf1234</p>
+				<p>
+					<a href="{{ path('fos_user_security_login') }}?username=test&password=asdf1234">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+				</p>
+				{% endif %}
+			</div>
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<div>
+				<p>
+					{{ 'msg.newAlert'|trans({}, 'AppBundle') }}
+					<a href="{{ path('googlealert_new') }}">{{ 'msg.click_here'|trans({}, 'AppBundle') }}</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					{{ 'msg.checkAlert'|trans({}, 'AppBundle') }}
+					<a href="{{ path('googlealert_index') }}">{{ 'msg.click_here'|trans({}, 'AppBundle') }}</a>
+				</p>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
+

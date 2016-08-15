@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="panel panel-default panel-register text-left">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ 'layout.register'|trans }}</h3>	
+	</div>
+	<div class="panel-body">
+		{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-register'}}) }}
+		    {{ form_widget(form) }}
+		    <div class="text-right btns">
+		    	<input id="cancelBtn" class="btn btn-danger" type="button" value="{{ 'form.cancel'|trans }}" />
+		        <input class="btn btn-success" type="submit" value="{{ 'registration.submit'|trans }}" />
+		    </div>
+		{{ form_end(form) }}
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('#cancelBtn').bind('click', function() {
+			window.location.href = '{{ path('fos_user_security_login') }}';
+		});
+	});
+</script>

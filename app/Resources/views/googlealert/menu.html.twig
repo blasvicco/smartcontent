@@ -1,0 +1,8 @@
+<ul class="nav nav-pills mini-btn">
+	<li {% if app.request.get('_route') == 'googlealert_index' %} class="active" {% endif %}>
+		<a href="{{ path('googlealert_index') }}">List</a>
+	</li>
+	<li {% if app.request.get('_route') == 'googlealert_new' %} class="active" {% endif %}>
+		<a href="{{ path('googlealert_new') }}">New</a>
+	</li>
+</ul>

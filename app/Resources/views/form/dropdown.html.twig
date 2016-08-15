@@ -1,0 +1,29 @@
+{# app/Resources/views/form/dropdown.html.twig #}
+{% block dropdown_widget %}
+	{% spaceless %}
+	<div class="dropdown dropdown-inline">
+		<button class="btn btn-default dropdown-toggle" type="button" id="{{ name }}_" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			<span class="caret"></span>
+		</button>
+		<input type="hidden" id="{{ name }}" name="{{ full_name }}" value="{{ data }}">
+		<ul class="dropdown-menu" id="{{ name }}__" {{ block('widget_container_attributes') }}>
+			{% for key,val in choices %}
+				<li onclick="{{ name }}_select(this);" data-val="{{ val.value }}" data-text="{{ val.label|trans({}, 'AppBundle') }}" {% if val.value == data %} class="selected" {% endif %}>
+					<a href="#">{{ val.label|trans({}, 'AppBundle') }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	<script>
+		{{ name }}_select = function(option) {
+			var val = $(option).attr('data-val');
+			var valText = $(option).attr('data-text');
+			$('#{{ name }}_').html('<span>'+valText + '</span>&nbsp;<span class="caret"></span>');
+			$('#{{ name }}').val(val);
+		};
+		$(document).ready(function() {
+			$('#{{ name }}__').find('li.selected').trigger('click');
+		});
+	</script>
+	</div>
+	{% endspaceless %}
+{% endblock %}

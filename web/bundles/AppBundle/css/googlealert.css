@@ -1,0 +1,55 @@
+.tableList {
+	width: 80%;
+	margin: auto;
+}
+
+.paginator {
+	width: 80%;
+	margin: auto;
+    text-align: center;
+}
+
+.form-googlealert {
+	max-width: 600px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-googlealert label {
+	float: left;
+    width: 20%;
+    text-align: right;
+    margin-right: 1%;
+    margin-top: 1%;
+}
+
+.form-googlealert .form-group {
+	height: 35px;
+}
+
+.form-googlealert .form-control {
+	width: 60%;
+	float: left;
+}
+
+.form-googlealert .dropdown-inline {
+
+}
+
+.plus-right {
+	float: right;
+}
+
+.action {
+	list-style-type: none;
+	display: inline;
+}
+
+.action li {
+	float: left;
+	margin-left: 9px;
+}
+
+.delete {
+	color: #BB0000;
+}

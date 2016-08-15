@@ -1,0 +1,21 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('bundles/AppBundle/css/register.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+	<div class="vcenter">
+	    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+	    <p>
+	    	<span>{{ 'msg.start'|trans({}, 'AppBundle') }}</span>
+	    	<a href="/">{{ 'msg.click_here'|trans({}, 'AppBundle') }}!</a>
+	    </p>
+	    {% if targetUrl %}
+	    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+	    {% endif %}
+    </div>
+{% endblock fos_user_content %}

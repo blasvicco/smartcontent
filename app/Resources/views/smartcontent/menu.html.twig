@@ -1,0 +1,5 @@
+<ul class="nav nav-pills mini-btn">
+	<li {% if app.request.get('_route') == 'smartcontent_index' %} class="active" {% endif %}>
+		<a href="{{ path('smartcontent_index') }}">List</a>
+	</li>
+</ul>
