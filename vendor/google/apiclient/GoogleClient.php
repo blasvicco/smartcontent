@@ -1,5 +1,5 @@
 <?php 
-# vendor/google/apiclient/Google.php
+# vendor/google/apiclient/GoogleClient.php
 
 require_once __DIR__.'/src/Google/Client.php';
 
