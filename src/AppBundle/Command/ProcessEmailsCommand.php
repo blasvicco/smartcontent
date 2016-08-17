@@ -47,6 +47,7 @@ class ProcessEmailsCommand extends ContainerAwareCommand {
 			}
 			file_put_contents($credentialsPath, $accessToken);
 			echo 'Credentials saved to ' . $credentialsPath . "\n";
+			exit;
 		}
 		$client->setAccessToken($accessToken);
 		// Refresh the token if it's expired.
@@ -215,6 +216,7 @@ class ProcessEmailsCommand extends ContainerAwareCommand {
 		}
 		if (empty($userId)) return;
 		$googleAlert = $this->getByUserIdAndKeyword($userId, $keywords);
+		if (empty($googleAlert)) return;
 		$em = $this->getContainer()->get('doctrine')->getManager();
 		foreach ($links as $url) {
 			$smartContent = new SmartContent();
