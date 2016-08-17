@@ -6,7 +6,7 @@ SmartContent will read the links from the queue and will try to retrive the cont
 Users will be able to list, filter and review all the content processed for the WebApp.
 
 ##### Live project:
-http://www.smartcontent.tk
+http://www.smartcontent.tk Soon!!!
 
 ##### Some of the technologies used in this project are:
   - Symfony 3 (http://symfony.com/)
