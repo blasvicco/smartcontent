@@ -27,9 +27,29 @@ Soon!!!
 $ git clone [git-repo-url] folder-name
 $ cd folder-name
 ```
-Edit the config files
 
-Performe the first google api call from console and move the gmail_php.json and the client_secret.json to the config file if is necessary
+Create the DB and import the structure with db/smartcontent.sql
+
+Edit the config files and execute composer install
+
+```sh
+$ composer install -vvv
+```
+
+Composer install could overwrite the next files:
+  - vendor/google/apiclient/GoogleClient.php
+  - vendor/google/apiclient/GoogleServiceGmail.php
+  - vendor/google/apiclient/GoogleServiceGmailModifyThreadRequest.php
+In this case just get it from the repo again ;)
+
+Give permission to the var folder for symfony:
+```sh
+$ chmod 0777 var/cache/ -R
+$ chmod 0777 var/logs/ -R
+$ chmod 0777 var/sessions/ -R
+```
+
+Performe the first google api call from console (you will need the client_secret.json from Google API).
 ```sh
 $ php bin/console ProcessEmail
 ```
