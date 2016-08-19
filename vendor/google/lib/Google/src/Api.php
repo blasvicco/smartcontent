@@ -39,7 +39,7 @@ class Api {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
 		$result = curl_exec($ch);
 		if (strpos($result, '<title>Redir') === false) {
-			dump($result);
+			//var_dump($result);
 			throw new Exception('Google Api Login FAIL.');
 		} else {
 			return $ch;
@@ -119,7 +119,7 @@ class Api {
 			$inputs = $this->getInputs($matches[1]);
 			return $inputs;
 		}
-		dump($result);
+		//var_dump($result);
 		throw new Exception('Google Api login form not found.');
 	}
 
@@ -128,7 +128,7 @@ class Api {
 			$hiddenData = json_decode($matches[1]);
 			return $hiddenData;
 		}
-		dump($result);
+		//var_dump($result);
 		throw new Exception('Google Api hidden data not found.');
 	}
 
