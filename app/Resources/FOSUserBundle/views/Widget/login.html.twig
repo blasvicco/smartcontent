@@ -1,4 +1,4 @@
-<div>
+<div style="margin-top: 10px;">
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 		{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
 			<a href="{{ path('fos_user_profile_show') }}">
