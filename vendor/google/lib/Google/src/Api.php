@@ -39,13 +39,40 @@ class Api {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
 		$result = curl_exec($ch);
 		if (strpos($result, '<title>Redir') === false) {
-			//var_dump($result);
-			throw new Exception('Google Api Login FAIL.');
+			$formFields = $this->getChallengeLoginFormFields($result);
+			if (!empty($formFields)) {
+				return $this->challengeLogin($ch, $formFields);
+			}
 		} else {
 			return $ch;
 		}
 	}
 
+	function challengeLogin($ch, $input = []) {
+		curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/signin/challenge/ipp/4');
+		curl_setopt($ch, CURLOPT_POST, 0);
+		$post_string = '';
+		foreach ($input as $key => $value) {
+			$post_string .= $key . '=' . urlencode($value) . '&';
+		}
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
+		$result = curl_exec($ch);
+		$formFields = $this->getValidationLoginFormFields($result);
+		$formFields['Pin'] = '123456';
+		curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/signin/challenge/ipp/4');
+		curl_setopt($ch, CURLOPT_POST, 0);
+		$post_string = '';
+		foreach ($formFields as $key => $value) {
+			$post_string .= $key . '=' . urlencode($value) . '&';
+		}
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
+		$result = curl_exec($ch);
+		if (strpos($result, '<title>Redir') === false) {
+			throw new Exception('Google Api login FAIL - Try to perform Challenge Verification by hand.');
+		}
+		return $ch;
+	}
+	
 	function createAlert($ch, $input = []) {
 		curl_setopt($ch, CURLOPT_URL, 'http://www.google.com/alerts/manage');
 		curl_setopt($ch, CURLOPT_POST, 0);
@@ -114,6 +141,13 @@ class Api {
 		return $result;
 	}
 
+	function getChallengeLoginFormFields($data) {
+		if (preg_match('/(<form.*\/signin\/challenge\/ipp\/4.*?<\/form>)/s', $data, $matches)) {
+			$inputs = $this->getInputs($matches[1]);
+			return $inputs;
+		}
+	}
+	
 	function getLoginFormFields($data) {
 		if (preg_match('/(<form.*?id=.?gaia_loginform.*?<\/form>)/is', $data, $matches)) {
 			$inputs = $this->getInputs($matches[1]);
