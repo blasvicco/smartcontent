@@ -65,6 +65,7 @@ class ProcessContentsCommand extends ContainerAwareCommand {
 		$SummarizerPro = new \SummarizerPro();
 		$SummarizerPro->scoreWords($content);
 		if ($SummarizerPro->isAnImportantWord($keyword)) {
+			$SummarizerPro->removeFromIgnore($keyword);
 			$content = $SummarizerPro->summarize($content);
 		}
 		return $content;

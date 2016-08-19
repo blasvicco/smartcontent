@@ -1,7 +1,26 @@
 <?php
 
 class summarizer {
-	private $ignore = ['the', 'is', 'on', 'a', 'has', 'have', 'to', 'of', 'and', 'for', 'in', 'that'];
+	private $ignore = [
+		//english
+		'carefully', 'correctly', 'eagerly', 'easily', 'fast', 'loudly', 'patiently', 'quickly',
+		'quietly', 'well', 'abroad', 'anywhere', 'downstairs', 'here', 'home', 'in', 'nowhere',
+		'out', 'outside', 'somewhere', 'there', 'underground', 'upstairs', 'so', 'that', 'to',
+		'because', 'since', 'accidentally', 'intentionally', 'purposely', 'always', 'every',
+		'never', 'often', 'rarely', 'seldom', 'sometimes', 'usually', 'after', 'already', 'during',
+		'finally', 'just', 'last', 'later', 'next', 'now', 'recently', 'soon', 'then', 'tomorrow',
+		'when', 'while', 'yesterday', 'everywhere', 'the', 'this', 'these', 'then', 'his', 'her', 'your',
+		'from', 'for', 'as', 'at', 'of', 'a', 'an', 'is', 'are', 'and', 'has', 'have', 'on', 'be', 'will',
+		'by', 'or', 'been', 'can', 'had', 'not', 'yes',
+		//spanish
+		'ahora', 'antes', 'después', 'tarde', 'luego', 'ayer', 'temprano', 'ya', 'todavía',
+		'anteayer', 'aún', 'pronto', 'hoy', 'aquí', 'ahí', 'allí', 'cerca', 'lejos', 'fuera',
+		'dentro', 'alrededor', 'aparte', 'encima', 'debajo', 'delante', 'detrás', 'así',
+		'bien', 'mal', 'despacio', 'deprisa', 'como', 'mucho', 'poco', 'muy', 'casi', 'todo',
+		'nada', 'algo', 'medio', 'demasiado', 'bastante', 'más', 'menos', 'además', 'incluso',
+		'también', 'sí', 'también', 'asimismo', 'no', 'tampoco', 'jamás', 'nunca', 'acaso',
+		'quizá', 'quizás', 'el', 'la', 'los', 'las', 'de', 'y', 'es', 'son', 'si', 'no'
+	];
 	private $words = [];
 	private $sentences = [];
 	
@@ -13,6 +32,18 @@ class summarizer {
 		return $str;
 	}
 	
+	function removeFromIgnore($words) {
+		$words = strtolower($words);
+		$words = explode(' ', $words);
+		$this->ignore = array_diff($this->ignore, $words);
+	}
+	
+	function addToIgnore($words) {
+		$words = strtolower($words);
+		$words = explode(' ', $words);
+		$this->ignore = array_merge($this->ignore, $words);
+	}
+	
 	function scoreWords($str) {
 		$str = $this->sanitizer($str);
 		$words = array_count_values(str_word_count($str, 1));
@@ -22,12 +53,13 @@ class summarizer {
 				$this->words[$word] = $value/$maxRep;
 			}
 		}
+		arsort($this->words);
 	}
 	
 	function isAnImportantWord($word) {
 		if (!empty($this->words[$word])) {
 			$score = $this->words[$word];
-			return $score >= 0.80;
+			return $score >= 0.8;
 		}
 		return false;
 	}
