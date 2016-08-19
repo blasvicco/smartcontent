@@ -1,8 +1,8 @@
 <?php
 
 class Api {
-	private $username = 'smart.content.api@gmail.com';
-	private $password = 'sm4rtc0nt3nt';
+	private $username = '';
+	private $password = '';
 	private $file = 'cookies.txt';
 
 	function init($username, $password) {
