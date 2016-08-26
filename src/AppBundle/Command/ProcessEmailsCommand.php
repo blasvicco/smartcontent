@@ -195,9 +195,9 @@ class ProcessEmailsCommand extends ContainerAwareCommand {
 		// get google alert words
 		$keywords = null;
 		$matches = [];
-		$regexp = '\'.+\'';
+		$regexp = '\["(.+)"';
 		if (preg_match_all('/' . $regexp . '/', $emailContent, $matches)) {
-			$keywords = $matches[0] ? str_replace("'", '', $matches[0]) : null;
+			$keywords = isset($matches[1]) ? $matches[1][0] : null;
 		}
 		// get urls
 		$googleLinks = [];
