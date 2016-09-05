@@ -206,8 +206,8 @@ class ProcessEmailsCommand extends ContainerAwareCommand {
 		if (preg_match_all('/' . $regexp . '/i', $emailContent, $googleLinks)) {
 			$regexp = 'url=(.*)?(?=&ct)';
 			$matches = [];
-			foreach ($googleLinks as $match) {
-				if (preg_match_all('/' . $regexp . '/i', $match[0], $matches)) {
+			foreach ($googleLinks[0] as $match) {
+				if (preg_match_all('/' . $regexp . '/i', $match, $matches)) {
 					if (!empty($matches[1][0])) {
 						$links[] = $matches[1][0];
 					}
