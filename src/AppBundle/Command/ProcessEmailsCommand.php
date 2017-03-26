@@ -184,13 +184,24 @@ class ProcessEmailsCommand extends ContainerAwareCommand {
 		]);
 	}
 
+	private function unHashId ($id) {
+		$c = ['!' => 1, '"' => 2, '£' => 3, '$' => 4, '%' => 4, '&' => 6, '/' => 7, '(' => 8, ')' => 9, '=' => 10];
+		$id = str_split($id);
+		$unHash = '';
+		foreach ($id as $cid) {
+				$unHash .= $c[$cid] ? $c[$cid] : '';
+			}
+		return $unHash;
+	}
+
 	private function parseEmail($emailContent) {
 		// get user id
 		$userId = null;
 		$matches = [];
-		$regexp = '\?[0-9]+?\?';
+		$regexp = '\?\W+?\?';
 		if (preg_match_all('/' . $regexp . '/', $emailContent, $matches)) {
-			$userId = $matches[0] ? str_replace('?', '', $matches[0][0]) : null;
+				$userId = $matches[0] ? str_replace('?', '', $matches[0][0]) : null;
+				$userId = $this->unHashId($userId);
 		}
 		// get google alert words
 		$keywords = null;

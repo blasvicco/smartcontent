@@ -35,6 +35,16 @@ class GoogleAlertController extends Controller {
 		]);
 	}
 
+	private function hashId($id) {
+		$c = [1 => '!', 2 => '"', 3 => '£', 4 => '$', 5 => '%', 6 => '&', 7 => '/', 8 => '(', 9 => ')', 0 => '='];
+		$id = str_split($id);
+		$hash = '';
+		foreach ($id as $cid) {
+			$hash .= $c[$cid] ? $c[$cid] : '';
+		}
+		return $hash;
+	}
+
 	/**
 	 * Deletes a GoogleAlert entity.
 	 *
@@ -77,7 +87,7 @@ class GoogleAlertController extends Controller {
 			$GoogleApi->init($this->getParameter('googleId'), $this->getParameter('googlePass'));
 			$response = $GoogleApi->login();
 			$response = $GoogleApi->createAlert($response, [
-				'keywords' => '"' . $googleAlert->getKeyword() . '" ?' . $googleAlert->getUserId() . '?', 
+				'keywords' => '"' . $googleAlert->getKeyword() . '" ?' . $this->hashId($googleAlert->getUserId()) . '?', 
 				'often' => $googleAlert->getOften(), 
 				'lang' => $googleAlert->getLang(), 
 				'country' => $googleAlert->getCountry()
