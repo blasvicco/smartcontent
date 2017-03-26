@@ -2,7 +2,7 @@
 This is a complete example of a Symfony project.
 At this point, users can use this WebApp in order to create Google Alerts and review the contents that SmartContent will automatically retrieve from the Google Alert emails.
 SmartContent will connect to Gmail and read the emails from Google Alerts. It will capture the links and put them in a queue to be processed.
-SmartContent will read the links from the queue and will try to retrive the content. After that, it will classify and summarize them.
+SmartContent will read the links from the queue and will try to retrieve the content. After that, it will classify and summarize them.
 Users will be able to list, filter and review all the content processed for the WebApp.
 
 ##### Live project:
