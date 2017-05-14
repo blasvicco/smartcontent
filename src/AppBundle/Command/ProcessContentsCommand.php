@@ -40,10 +40,10 @@ class ProcessContentsCommand extends ContainerAwareCommand {
 		$SummarizerPro = new \SummarizerPro();
 		$SummarizerPro->scoreWords($content);
 		$matches = [];
-		preg_match_all('/<(h7|h6|h5|h4|h3|h2|h1)(\s\S.+)?>.+<\/(h7|h6|h5|h4|h3|h2|h1)>/', $content, $matches);
+		preg_match_all('/<(h6|h5|h4|h3|h2|h1)(\s\S.+)?>/', $content, $matches);
 		$h = count($matches[0]);
 		$matches = [];
-		preg_match_all('/<(p)(\s\S.+)?>.+<\/(p)>/', $content, $matches);
+		preg_match_all('/<(p)(\s\S.+)?>/', $content, $matches);
 		$p = count($matches[0]);
 		return ($p > $h) && $SummarizerPro->isAnImportantWord($keyword);
 	}
@@ -51,7 +51,7 @@ class ProcessContentsCommand extends ContainerAwareCommand {
 	function parseContent($content, $keyword) {
 		$matches = [];
 		$content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $content);
-		preg_match_all('/<(p|h7|h6|h5|h4|h3|h2|h1)(\s\S.+)?>.+<\/(p|h7|h6|h5|h4|h3|h2|h1)>/', $content, $matches);
+		preg_match_all('/<(p|h6|h5|h4|h3|h2|h1)(\s\S.+)?>.+<\/(p|h6|h5|h4|h3|h2|h1)>/', $content, $matches);
 		$content = '';
 		if ($matches[0]) {
 			for ($i = count($matches[0]) - 1; $i >= 0; $i --) {
@@ -61,7 +61,7 @@ class ProcessContentsCommand extends ContainerAwareCommand {
 				$content = $element . (strpos($element, '<p') === false ? "\n\n" : "\n") . $content;
 			}
 		}
-		$content = strip_tags($content, '<h1><h2><h3><h4><h5><h6><h7><p>');
+		$content = strip_tags($content, '<h1><h2><h3><h4><h5><h6><p>');
 		$SummarizerPro = new \SummarizerPro();
 		$SummarizerPro->scoreWords($content);
 		if ($SummarizerPro->isAnImportantWord($keyword)) {
