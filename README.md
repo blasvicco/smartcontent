@@ -5,9 +5,6 @@ SmartContent will connect to Gmail and read the emails from Google Alerts. It wi
 SmartContent will read the links from the queue and will try to retrieve the content. After that, it will classify and summarize them.
 Users will be able to list, filter and review all the content processed for the WebApp.
 
-##### Live project:
-http://www.smartcontent.tk
-
 ##### Some of the technologies used in this project are:
   - Symfony 3 (http://symfony.com/)
   - MySql/MariaDb (https://mariadb.org/)
